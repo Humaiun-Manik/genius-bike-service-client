@@ -29,3 +29,4 @@ export default App;
 // 1. react bootstrap
 // 2. react router
 // 3. firebase
+// 4. react fonts awesome
