@@ -1,0 +1,13 @@
+.sign-up h1 {
+  width: 40%;
+  margin: 0 auto;
+}
+.input-label{
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 576px) {
+  .sign-up h1 {
+    width: 100%;
+  }
+}

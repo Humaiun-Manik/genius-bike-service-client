@@ -1,0 +1,56 @@
+.social-buttons {
+  width: 75%;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 25px;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+.social-btn:hover {
+  transform: scale(1.05);
+}
+.social-btn img {
+  width: 25px;
+}
+.social-btn p {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2ch;
+  font-weight: 600;
+}
+
+.facebook-btn {
+  color: white;
+  background-color: #3b5998;
+}
+.icon {
+  font-size: 24px;
+}
+
+.github-btn {
+  color: white;
+  background-color: black;
+}
+
+@media only screen and (max-width: 576px) {
+  .social-buttons {
+    width: 100%;
+  }
+  .social-btn p {
+    font-size: 16px;
+    margin: 0;
+  }
+  .social-btn img,
+  .icon {
+    margin-right: 10px;
+  }
+}

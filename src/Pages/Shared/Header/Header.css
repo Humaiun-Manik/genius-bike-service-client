@@ -23,7 +23,16 @@
   font-size: 22px;
   transition: 0.5s;
   font-weight: 500;
+  margin: 0 10px;
 }
 .menu-items a:hover {
   color: red;
+}
+
+.sign-out-btn {
+  font-weight: 600;
+  transition: 0.5s;
+}
+.sign-out-btn:hover {
+  color: red !important;
 }
