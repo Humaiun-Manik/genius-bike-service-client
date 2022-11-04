@@ -1,8 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookSquare, faGithub } from "@fortawesome/free-brands-svg-icons";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import google from "../../../images/social-icon/google.png";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
@@ -10,6 +7,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-fireb
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../Shared/Loading/Loading";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -17,11 +15,24 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agree, setAgree] = useState(false);
-  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {
+  const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth, {
     sendEmailVerification: true,
   });
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
+
+  if (loading || updating) {
+    return <Loading></Loading>;
+  }
+
+  let errorElement;
+  if (error || updateError) {
+    errorElement = (
+      <div>
+        <p className="text-danger text-center">{error?.message}</p>
+      </div>
+    );
+  }
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -48,8 +59,8 @@ const SignUp = () => {
             </div>
             <div className="w-50 border-bottom border-2 mx-4"></div>
           </div>
+          <h4 className="text-center fw-bolder mb-3">Sign up with your email address</h4>
           <Form onSubmit={handleSignUp}>
-            <h4 className="text-center fw-bolder mb-3">Sign up with your email address</h4>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label className="input-label fw-bolder">What's your name?</Form.Label>
               <Form.Control
@@ -108,6 +119,7 @@ const SignUp = () => {
               <ToastContainer />
             </div>
           </Form>
+          {errorElement}
           <p className="text-center my-4 fs-5">
             Have an account?{" "}
             <Link className="text-primary fw-bold" to={"/login"}>

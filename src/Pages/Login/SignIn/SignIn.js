@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import login from "../../../images/login/login.svg";
 import "./SignIn.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { async } from "@firebase/util";
+import Loading from "../../Shared/Loading/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +17,10 @@ const SignIn = () => {
   const location = useLocation();
   const [signInWithEmailAndPassword, user1, loading, error] = useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+  if (loading || sending) {
+    return <Loading></Loading>;
+  }
 
   let errorElement;
   if (error) {
@@ -40,8 +46,12 @@ const SignIn = () => {
   };
 
   const resetPassword = async () => {
-    await sendPasswordResetEmail(email);
-    alert("Sent email");
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast.success("Sent email", { icon: "🚀" });
+    } else {
+      toast.error("Please enter your email address!");
+    }
   };
 
   return (
@@ -79,14 +89,15 @@ const SignIn = () => {
                 Login
               </Button>
             </div>
-            <p className="text-center mt-4 fs-5">
-              Forget Password?
-              <Link onClick={resetPassword} className="text-primary ms-2 text-decoration-none">
-                Reset Password.
-              </Link>
-            </p>
+            <ToastContainer></ToastContainer>
             {errorElement}
           </Form>
+          <p className="text-center mt-4 fs-5">
+            Forget Password?
+            <button onClick={resetPassword} className="text-primary ms-2 text-decoration-none border-0">
+              Reset Password.
+            </button>
+          </p>
           <div className="d-flex align-items-center my-3">
             <div className="w-50 border-bottom border-2 mx-4"></div>
             <div className="">

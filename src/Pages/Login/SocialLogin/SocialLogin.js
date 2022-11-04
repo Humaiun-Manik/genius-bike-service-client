@@ -5,12 +5,17 @@ import { useSignInWithGithub, useSignInWithGoogle } from "react-firebase-hooks/a
 import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import google from "../../../images/social-icon/google.png";
+import Loading from "../../Shared/Loading/Loading";
 import "./Sociallogin.css";
 
 const SocialLogin = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+  const [signInWithGoogle, user, googleLoading, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, user1, githubLoading, error1] = useSignInWithGithub(auth);
   const navigate = useNavigate();
+
+  if (googleLoading || githubLoading) {
+    return <Loading></Loading>;
+  }
 
   let errorElement;
   if (error || error1) {
