@@ -9,6 +9,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../../Shared/Loading/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -56,6 +57,7 @@ const SignIn = () => {
 
   return (
     <div className="container">
+      <PageTitle title="Login"></PageTitle>
       <h1 className="text-center my-5">Please Login</h1>
       <Row xs={1} md={1} lg={2} className="form-container">
         <Col>

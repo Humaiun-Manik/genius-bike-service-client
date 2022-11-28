@@ -44,3 +44,4 @@ export default App;
 // 4. react fonts awesome
 // 5. react firebase hooks
 // 6. react toastify
+// 7. react-helmet-async
