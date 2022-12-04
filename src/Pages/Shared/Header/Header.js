@@ -27,6 +27,12 @@ const Header = () => {
               </Nav.Link>
               <Nav.Link href="#services">Services</Nav.Link>
               <Nav.Link href="#experts">Experts</Nav.Link>
+              {user && (
+                <>
+                  <Nav.Link href="/addService">Add</Nav.Link>
+                  <Nav.Link href="/manage">Manage</Nav.Link>
+                </>
+              )}
               {user ? (
                 <button
                   className="border-0 bg-info text-white fs-5 sign-out-btn"

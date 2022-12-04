@@ -1,11 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import AddService from "./Pages/AddServide/AddService";
 import Checkout from "./Pages/Checkout/Checkout/Checkout";
 import Home from "./Pages/Home/Home/Home";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import SignIn from "./Pages/Login/SignIn/SignIn";
 import SignUp from "./Pages/Login/SignUp/SignUp";
+import ManageServices from "./Pages/ManageServices/ManageServices";
 import NotFound from "./Pages/NotFound/NotFound";
 import ServiceDetail from "./Pages/ServiceDetail/ServiceDetail";
 import Footer from "./Pages/Shared/Footer/Footer";
@@ -26,6 +28,22 @@ function App() {
           element={
             <RequireAuth>
               <Checkout />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/addService"
+          element={
+            <RequireAuth>
+              <AddService />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/manage"
+          element={
+            <RequireAuth>
+              <ManageServices />
             </RequireAuth>
           }
         />

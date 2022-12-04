@@ -9,8 +9,8 @@ import Loading from "../../Shared/Loading/Loading";
 import "./Sociallogin.css";
 
 const SocialLogin = () => {
-  const [signInWithGoogle, user, googleLoading, error] = useSignInWithGoogle(auth);
-  const [signInWithGithub, user1, githubLoading, error1] = useSignInWithGithub(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+  const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
   const navigate = useNavigate();
 
   if (googleLoading || githubLoading) {
@@ -18,17 +18,17 @@ const SocialLogin = () => {
   }
 
   let errorElement;
-  if (error || error1) {
+  if (googleError || githubError) {
     errorElement = (
       <div>
         <p className="text-danger text-center">
-          Error: {error?.message} {error1?.message}
+          Error: {googleError?.message} {githubError?.message}
         </p>
       </div>
     );
   }
 
-  if (user || user1) {
+  if (googleUser || githubUser) {
     navigate("/home");
   }
 
