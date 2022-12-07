@@ -2,7 +2,7 @@ import { faFacebookSquare, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSignInWithGithub, useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import google from "../../../images/social-icon/google.png";
 import Loading from "../../Shared/Loading/Loading";
@@ -12,6 +12,7 @@ const SocialLogin = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
   const navigate = useNavigate();
+  const location = useLocation();
 
   if (googleLoading || githubLoading) {
     return <Loading></Loading>;
@@ -28,8 +29,9 @@ const SocialLogin = () => {
     );
   }
 
+  const from = location.state?.from?.pathname || "/";
   if (googleUser || githubUser) {
-    navigate("/home");
+    navigate(from, { replace: true });
   }
 
   return (

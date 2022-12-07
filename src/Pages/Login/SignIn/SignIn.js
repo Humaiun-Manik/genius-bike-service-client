@@ -7,7 +7,7 @@ import auth from "../../../firebase.init";
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../../Shared/Loading/Loading";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 
@@ -91,7 +91,6 @@ const SignIn = () => {
                 Login
               </Button>
             </div>
-            <ToastContainer></ToastContainer>
             {errorElement}
           </Form>
           <p className="text-center mt-4 fs-5">

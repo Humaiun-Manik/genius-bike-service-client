@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
-import AddService from "./Pages/AddServide/AddService";
+import AddService from "./Pages/AddService/AddService";
 import Checkout from "./Pages/Checkout/Checkout/Checkout";
 import Home from "./Pages/Home/Home/Home";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
@@ -24,7 +25,7 @@ function App() {
         <Route path="login" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route
-          path="checkout"
+          path="checkout/:serviceId"
           element={
             <RequireAuth>
               <Checkout />
@@ -50,6 +51,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
@@ -63,3 +65,4 @@ export default App;
 // 5. react firebase hooks
 // 6. react toastify
 // 7. react-helmet-async
+// 8. axios

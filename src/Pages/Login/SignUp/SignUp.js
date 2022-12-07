@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../Shared/Loading/Loading";
 
@@ -116,7 +116,6 @@ const SignUp = () => {
               <Button disabled={!agree} className="fs-4 px-5 rounded-pill" variant="dark" type="submit">
                 Sign up
               </Button>
-              <ToastContainer />
             </div>
           </Form>
           {errorElement}
