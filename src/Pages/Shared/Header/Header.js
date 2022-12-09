@@ -31,6 +31,7 @@ const Header = () => {
                 <>
                   <Nav.Link href="/addService">Add</Nav.Link>
                   <Nav.Link href="/manage">Manage</Nav.Link>
+                  <Nav.Link href="/Orders">Orders</Nav.Link>
                 </>
               )}
               {user ? (

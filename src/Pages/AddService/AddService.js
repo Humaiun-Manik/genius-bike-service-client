@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddService = () => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
     fetch("http://localhost:5000/service", {
       method: "POST",
       headers: {
@@ -14,7 +15,10 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        if (result.insertedId) {
+          toast.success("Your service added!!");
+          e.target.reset();
+        }
       });
   };
 

@@ -10,6 +10,7 @@ import SignIn from "./Pages/Login/SignIn/SignIn";
 import SignUp from "./Pages/Login/SignUp/SignUp";
 import ManageServices from "./Pages/ManageServices/ManageServices";
 import NotFound from "./Pages/NotFound/NotFound";
+import Orders from "./Pages/Orders/Orders";
 import ServiceDetail from "./Pages/ServiceDetail/ServiceDetail";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
@@ -45,6 +46,14 @@ function App() {
           element={
             <RequireAuth>
               <ManageServices />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <Orders />
             </RequireAuth>
           }
         />
