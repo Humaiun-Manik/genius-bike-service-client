@@ -6,7 +6,7 @@ const Experts = () => {
   const [experts, setExperts] = useState([]);
 
   useEffect(() => {
-    fetch("experts.json")
+    fetch("http://localhost:5000/expert")
       .then((res) => res.json())
       .then((data) => setExperts(data));
   }, []);
@@ -18,7 +18,7 @@ const Experts = () => {
       </div>
       <Row xs={1} md={2} lg={3} className="g-4">
         {experts.map((expert) => (
-          <Expert key={expert.id} expert={expert}></Expert>
+          <Expert key={expert._id} expert={expert}></Expert>
         ))}
       </Row>
     </div>

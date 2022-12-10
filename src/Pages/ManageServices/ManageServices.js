@@ -19,13 +19,20 @@ const ManageServices = () => {
   };
 
   return (
-    <div className="w-50 mx-auto my-5">
-      <h2>Manages your services</h2>
+    <div className="container my-5">
+      <h1 className="text-center py-4">
+        Manages your <span className="text-danger">services</span>
+      </h1>
       {services.map((service) => (
-        <div key={service._id}>
-          <h5>
-            Service Name: {service.name} <button onClick={() => handleDeleteService(service._id)}>X</button>{" "}
-          </h5>
+        <div
+          className="text-center mb-3 d-flex justify-content-between align-items-center border rounded"
+          key={service._id}
+        >
+          <img className="w-25" src={service.img} alt="" />
+          <h2>{service.name}</h2>
+          <button className="btn btn-danger fs-3 me-4" onClick={() => handleDeleteService(service._id)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

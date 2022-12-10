@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import AddService from "./Pages/AddService/AddService";
 import Checkout from "./Pages/Checkout/Checkout/Checkout";
+import ExpertDetail from "./Pages/ExpertDetail/ExpertDetail";
 import Home from "./Pages/Home/Home/Home";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import SignIn from "./Pages/Login/SignIn/SignIn";
@@ -25,6 +26,7 @@ function App() {
         <Route path="service/:serviceId" element={<ServiceDetail />} />
         <Route path="login" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="expert/:expertId" element={<ExpertDetail />} />
         <Route
           path="checkout/:serviceId"
           element={

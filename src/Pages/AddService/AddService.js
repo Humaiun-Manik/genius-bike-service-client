@@ -24,16 +24,19 @@ const AddService = () => {
 
   return (
     <div className="w-50 mx-auto my-5">
-      <h1 className="text-center">Please Add Service</h1>
+      <h1 className="text-center my-4">
+        Please Add <span className="text-danger">Service</span>
+      </h1>
       <form className="d-flex flex-column " onSubmit={handleSubmit(onSubmit)}>
         <input
-          className="mb-3 p-2 rounded"
+          className="mb-3 p-2 fs-4 rounded"
           placeholder="Name"
           {...register("name", { required: true, maxLength: 20 })}
         />
-        <textarea className="mb-3 p-2 rounded" placeholder="Description" {...register("description")} />
-        <input className="mb-3 p-2 rounded" placeholder="Price" type="number" {...register("price")} />
-        <input className="mb-3 p-2 rounded" placeholder="Photo Url" type="text" {...register("img")} />
+
+        <input className="mb-3 p-2 fs-4 rounded" placeholder="Price" type="number" {...register("price")} />
+        <input className="mb-3 p-2 fs-4 rounded" placeholder="Photo Url" type="text" {...register("img")} />
+        <textarea className="mb-3 p-2 fs-4 rounded" placeholder="Description" {...register("description")} />
         <input className="mb-3 py-2 rounded btn btn-info text-white fs-4" type="submit" value="Add Service" />
       </form>
     </div>

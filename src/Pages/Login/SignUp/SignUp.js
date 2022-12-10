@@ -8,6 +8,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../Shared/Loading/Loading";
+import useToken from "../../../hooks/useToken";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -15,14 +16,19 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agree, setAgree] = useState(false);
-  const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth, {
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {
     sendEmailVerification: true,
   });
+  const [token] = useToken(user);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
 
   if (loading || updating) {
     return <Loading></Loading>;
+  }
+
+  if (token) {
+    navigate("/home");
   }
 
   let errorElement;
@@ -42,7 +48,6 @@ const SignUp = () => {
     }
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    navigate("/home");
   };
 
   return (

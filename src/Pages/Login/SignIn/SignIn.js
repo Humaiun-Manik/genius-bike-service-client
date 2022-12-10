@@ -10,19 +10,24 @@ import Loading from "../../Shared/Loading/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
-import axios from "axios";
+import useToken from "../../../hooks/useToken";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [token] = useToken(user);
 
   if (loading || sending) {
     return <Loading></Loading>;
+  }
+
+  if (token) {
+    navigate(from, { replace: true });
   }
 
   let errorElement;
@@ -37,9 +42,6 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post("http://localhost:5000/login", { email });
-    localStorage.setItem("accessToken", data.accessToken);
-    navigate(from, { replace: true });
   };
 
   const navigateSignUp = () => {

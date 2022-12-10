@@ -1,8 +1,15 @@
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Expert = ({ expert }) => {
-  const { img, name, description } = expert;
+  const { _id, img, name, description } = expert;
+  const navigate = useNavigate();
+
+  const handleExpertDetails = (id) => {
+    navigate(`/expert/${id}`);
+  };
+
   return (
     <Col>
       <Card>
@@ -12,7 +19,7 @@ const Expert = ({ expert }) => {
           <Card.Text>{description} </Card.Text>
         </Card.Body>
         <Card.Footer className="text-center border-0">
-          <Button className="w-75 mb-3 fs-5 border" variant="light">
+          <Button onClick={() => handleExpertDetails(_id)} className="w-75 mb-3 fs-5 border" variant="light">
             Details
           </Button>
         </Card.Footer>

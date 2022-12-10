@@ -4,6 +4,7 @@ import React from "react";
 import { useSignInWithGithub, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import google from "../../../images/social-icon/google.png";
 import Loading from "../../Shared/Loading/Loading";
 import "./Sociallogin.css";
@@ -11,8 +12,10 @@ import "./Sociallogin.css";
 const SocialLogin = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
+  const [token] = useToken(googleUser || githubUser);
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   if (googleLoading || githubLoading) {
     return <Loading></Loading>;
@@ -29,8 +32,7 @@ const SocialLogin = () => {
     );
   }
 
-  const from = location.state?.from?.pathname || "/";
-  if (googleUser || githubUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
 

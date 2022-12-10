@@ -14,7 +14,7 @@ const Orders = () => {
 
   useEffect(() => {
     const getOrders = async () => {
-      const email = user.email;
+      const email = user?.email;
       try {
         const { data } = await axios.get(`http://localhost:5000/order?email=${email}`, {
           headers: {
@@ -33,8 +33,30 @@ const Orders = () => {
   }, [user]);
 
   return (
-    <div>
-      <h1>Orders pages: {orders.length}</h1>
+    <div className="container my-5">
+      <h1 className="text-center py-4">
+        Your Orders: <span className="text-danger">{orders.length}</span>
+      </h1>
+      <table className="table fs-4  table-info text-center border">
+        <thead>
+          <tr>
+            <th scope="col">Service Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        {orders.map((order) => (
+          <tbody key={order._id}>
+            <tr>
+              <td>{order.service}</td>
+              <td>{order.email}</td>
+              <td>{order.address}</td>
+              <td>{order.phone}</td>
+            </tr>
+          </tbody>
+        ))}
+      </table>
     </div>
   );
 };
