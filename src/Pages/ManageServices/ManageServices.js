@@ -7,7 +7,7 @@ const ManageServices = () => {
   const handleDeleteService = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      fetch(`http://localhost:5000/service/${id}`, {
+      fetch(`https://genius-bike-service.onrender.com/service/${id}`, {
         method: "DElETE",
       })
         .then((res) => res.json())

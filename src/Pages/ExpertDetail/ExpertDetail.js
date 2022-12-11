@@ -9,7 +9,7 @@ const ExpertDetail = () => {
   const [expert, setExpert] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/expert/${expertId}`)
+    fetch(`https://genius-bike-service.onrender.com/expert/${expertId}`)
       .then((res) => res.json())
       .then((data) => setExpert(data));
   }, [expertId]);

@@ -6,7 +6,7 @@ const Experts = () => {
   const [experts, setExperts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/expert")
+    fetch("https://genius-bike-service.onrender.com/expert")
       .then((res) => res.json())
       .then((data) => setExperts(data));
   }, []);

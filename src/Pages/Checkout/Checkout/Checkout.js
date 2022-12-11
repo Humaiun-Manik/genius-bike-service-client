@@ -21,7 +21,7 @@ const Checkout = () => {
       phone: e.target.phone.value,
     };
 
-    axios.post("http://localhost:5000/order", order).then((response) => {
+    axios.post("https://genius-bike-service.onrender.com/order", order).then((response) => {
       const { data } = response;
       if (data.insertedId) {
         toast.success("Your order is booked!!");

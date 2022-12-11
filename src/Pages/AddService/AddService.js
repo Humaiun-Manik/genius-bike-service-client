@@ -6,7 +6,7 @@ const AddService = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data, e) => {
-    fetch("http://localhost:5000/service", {
+    fetch("https://genius-bike-service.onrender.com/service", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -16,7 +16,7 @@ const Orders = () => {
     const getOrders = async () => {
       const email = user?.email;
       try {
-        const { data } = await axios.get(`http://localhost:5000/order?email=${email}`, {
+        const { data } = await axios.get(`https://genius-bike-service.onrender.com/order?email=${email}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
